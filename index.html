@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Mental Health Score Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>How does screen time shape student wellbeing?</h1>
+    <p>Describe a student’s social media habits and daily routine. The model returns an estimated mental health score.</p>
+  </header>
+
+  <main class="layout">
+    <form id="form" class="card" novalidate>
+      <div id="banner" class="banner" role="alert" hidden></div>
+
+      <fieldset class="group">
+        <legend>Student profile</legend>
+
+        <div class="field">
+          <label for="Age">Age</label>
+          <input type="number" id="Age" name="Age" min="10" max="100" step="1" placeholder="e.g. 20" inputmode="numeric">
+          <p class="error" data-error-for="Age"></p>
+        </div>
+
+        <div class="field" role="radiogroup" aria-labelledby="lbl-gender">
+          <span class="label" id="lbl-gender">Gender</span>
+          <div class="seg">
+            <label><input type="radio" name="Gender" value="Male"><span>Male</span></label>
+            <label><input type="radio" name="Gender" value="Female"><span>Female</span></label>
+          </div>
+          <p class="error" data-error-for="Gender"></p>
+        </div>
+
+        <div class="field">
+          <label for="Country">Country</label>
+          <input type="text" id="Country" name="Country" list="countries" placeholder="e.g. India" autocomplete="country-name">
+          <datalist id="countries">
+            <option value="India"><option value="USA"><option value="UK"><option value="Canada">
+            <option value="Australia"><option value="Germany"><option value="Mexico"><option value="Turkey">
+            <option value="France"><option value="Brazil"><option value="Japan"><option value="South Korea">
+          </datalist>
+          <p class="error" data-error-for="Country"></p>
+        </div>
+
+        <div class="field" role="radiogroup" aria-labelledby="lbl-level">
+          <span class="label" id="lbl-level">Academic level</span>
+          <div class="seg">
+            <label><input type="radio" name="Academic_Level" value="High School"><span>High School</span></label>
+            <label><input type="radio" name="Academic_Level" value="Undergraduate"><span>Undergraduate</span></label>
+            <label><input type="radio" name="Academic_Level" value="Graduate"><span>Graduate</span></label>
+          </div>
+          <p class="error" data-error-for="Academic_Level"></p>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Social media use</legend>
+
+        <div class="field">
+          <label for="Most_Used_Platform">Most used platform</label>
+          <select id="Most_Used_Platform" name="Most_Used_Platform">
+            <option value="" selected disabled>Choose a platform</option>
+            <option>Instagram</option><option>TikTok</option><option>YouTube</option>
+            <option>Facebook</option><option>Snapchat</option><option>Twitter</option>
+            <option>LinkedIn</option><option>WhatsApp</option><option>WeChat</option>
+            <option>LINE</option><option>KakaoTalk</option><option>VKonTakte</option>
+          </select>
+          <p class="error" data-error-for="Most_Used_Platform"></p>
+        </div>
+
+        <div class="field" role="radiogroup" aria-labelledby="lbl-purpose">
+          <span class="label" id="lbl-purpose">Main purpose of use</span>
+          <div class="seg">
+            <label><input type="radio" name="Purpose_Of_Use" value="Entertainment"><span>Entertainment</span></label>
+            <label><input type="radio" name="Purpose_Of_Use" value="Networking"><span>Networking</span></label>
+            <label><input type="radio" name="Purpose_Of_Use" value="Education"><span>Education</span></label>
+            <label><input type="radio" name="Purpose_Of_Use" value="News"><span>News</span></label>
+          </div>
+          <p class="error" data-error-for="Purpose_Of_Use"></p>
+        </div>
+
+        <div class="field">
+          <label for="Avg_Daily_Usage_Hours">Daily usage <span class="hint">hours</span></label>
+          <div class="slider-row">
+            <input type="range" min="0" max="24" step="0.5" value="4" data-sync="Avg_Daily_Usage_Hours" aria-hidden="true" tabindex="-1">
+            <input type="number" id="Avg_Daily_Usage_Hours" name="Avg_Daily_Usage_Hours" min="0" max="24" step="0.1" value="4">
+          </div>
+          <p class="error" data-error-for="Avg_Daily_Usage_Hours"></p>
+        </div>
+
+        <div class="field">
+          <label for="Daily_Unlocks">Phone unlocks <span class="hint">per day</span></label>
+          <input type="number" id="Daily_Unlocks" name="Daily_Unlocks" min="0" step="1" placeholder="e.g. 80" inputmode="numeric">
+          <p class="error" data-error-for="Daily_Unlocks"></p>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Daily routine</legend>
+
+        <div class="field">
+          <label for="Study_Hours">Study time <span class="hint">hours per day</span></label>
+          <div class="slider-row">
+            <input type="range" min="0" max="24" step="0.5" value="4" data-sync="Study_Hours" aria-hidden="true" tabindex="-1">
+            <input type="number" id="Study_Hours" name="Study_Hours" min="0" max="24" step="0.1" value="4">
+          </div>
+          <p class="error" data-error-for="Study_Hours"></p>
+        </div>
+
+        <div class="field">
+          <label for="Physical_Activity_Hours">Physical activity <span class="hint">hours per day</span></label>
+          <div class="slider-row">
+            <input type="range" min="0" max="24" step="0.5" value="1" data-sync="Physical_Activity_Hours" aria-hidden="true" tabindex="-1">
+            <input type="number" id="Physical_Activity_Hours" name="Physical_Activity_Hours" min="0" max="24" step="0.1" value="1">
+          </div>
+          <p class="error" data-error-for="Physical_Activity_Hours"></p>
+        </div>
+
+        <div class="field">
+          <label for="Sleep_Hours_Per_Night">Sleep <span class="hint">hours per night</span></label>
+          <div class="slider-row">
+            <input type="range" min="0" max="24" step="0.5" value="7" data-sync="Sleep_Hours_Per_Night" aria-hidden="true" tabindex="-1">
+            <input type="number" id="Sleep_Hours_Per_Night" name="Sleep_Hours_Per_Night" min="0" max="24" step="0.1" value="7">
+          </div>
+          <p class="error" data-error-for="Sleep_Hours_Per_Night"></p>
+        </div>
+
+        <div class="field" role="radiogroup" aria-labelledby="lbl-stress">
+          <span class="label" id="lbl-stress">Stress level</span>
+          <div class="seg">
+            <label><input type="radio" name="Stress_Level" value="Low"><span>Low</span></label>
+            <label><input type="radio" name="Stress_Level" value="Medium"><span>Medium</span></label>
+            <label><input type="radio" name="Stress_Level" value="High"><span>High</span></label>
+            <label><input type="radio" name="Stress_Level" value="Very High"><span>Very High</span></label>
+          </div>
+          <p class="error" data-error-for="Stress_Level"></p>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" id="submit" class="btn primary"><span class="spinner" aria-hidden="true"></span><span class="btn-text">Predict score</span></button>
+        <button type="reset" id="reset" class="btn ghost">Clear form</button>
+      </div>
+    </form>
+
+    <aside id="result" class="card result" data-state="empty" aria-live="polite">
+      <div class="state state-empty">
+        <h2>Your result appears here</h2>
+        <p>Fill in the form and select Predict score.</p>
+      </div>
+
+      <div class="state state-loading">
+        <div class="loader" aria-hidden="true"></div>
+        <p>Analysing student data…</p>
+      </div>
+
+      <div class="state state-done">
+        <div class="gauge">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="track" cx="60" cy="60" r="52"/>
+            <circle class="bar" id="ring" cx="60" cy="60" r="52"/>
+          </svg>
+          <div class="gauge-text"><strong id="score">0.0</strong><span>out of 10</span></div>
+        </div>
+        <h2 id="band">—</h2>
+        <p id="advice"></p>
+        <p class="disclaimer">An estimate from a machine learning model. It is not a diagnosis or a substitute for professional support.</p>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 "use strict";
 
 
-const API_URL = "http://127.0.0.1:8000/predict";
+const API_URL = "https://mental-health-score-o1dy.onrender.com";
 const TIMEOUT_MS = 15000;
 const MAX_SCORE = 10; // gauge scale; adjust if your model uses a different range
 
